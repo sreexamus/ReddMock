@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE825E7425373AF300BEA5F8 /* ReddMockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE825E7325373AF300BEA5F8 /* ReddMockManager.swift */; };
+		BE825E7825373B4A00BEA5F8 /* CrossProcessBridgeCommunicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE825E7725373B4A00BEA5F8 /* CrossProcessBridgeCommunicationDelegate.swift */; };
 		BECF9A5124FAA5E50040EE8F /* ReddMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BECF9A4724FAA5E50040EE8F /* ReddMock.framework */; };
 		BECF9A5624FAA5E50040EE8F /* ReddMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECF9A5524FAA5E50040EE8F /* ReddMockTests.swift */; };
 		BECF9A5824FAA5E50040EE8F /* ReddMock.h in Headers */ = {isa = PBXBuildFile; fileRef = BECF9A4A24FAA5E50040EE8F /* ReddMock.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BE825E7325373AF300BEA5F8 /* ReddMockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReddMockManager.swift; sourceTree = "<group>"; };
+		BE825E7725373B4A00BEA5F8 /* CrossProcessBridgeCommunicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossProcessBridgeCommunicationDelegate.swift; sourceTree = "<group>"; };
 		BECF9A4724FAA5E50040EE8F /* ReddMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReddMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BECF9A4A24FAA5E50040EE8F /* ReddMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReddMock.h; sourceTree = "<group>"; };
 		BECF9A4B24FAA5E50040EE8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 		BECF9A4924FAA5E50040EE8F /* ReddMock */ = {
 			isa = PBXGroup;
 			children = (
+				BE825E7725373B4A00BEA5F8 /* CrossProcessBridgeCommunicationDelegate.swift */,
 				BECF9A6A24FAA64C0040EE8F /* ConditionsCheck.swift */,
 				BECF9A6924FAA64C0040EE8F /* MockHTTPProtocol.swift */,
 				BECF9A6B24FAA64C0040EE8F /* MockRequestData.swift */,
@@ -104,6 +109,7 @@
 				BECF9A6124FAA61B0040EE8F /* Swizzling */,
 				BECF9A4A24FAA5E50040EE8F /* ReddMock.h */,
 				BECF9A4B24FAA5E50040EE8F /* Info.plist */,
+				BE825E7325373AF300BEA5F8 /* ReddMockManager.swift */,
 			);
 			path = ReddMock;
 			sourceTree = "<group>";
@@ -256,8 +262,10 @@
 				BECF9A6724FAA61B0040EE8F /* URLSessionSwizzling.swift in Sources */,
 				BECF9A7424FAA64C0040EE8F /* RDMockUtil.swift in Sources */,
 				BECF9A7324FAA64C0040EE8F /* RDMockResponse.swift in Sources */,
+				BE825E7825373B4A00BEA5F8 /* CrossProcessBridgeCommunicationDelegate.swift in Sources */,
 				BECF9A7624FAA64C0040EE8F /* MockScenarioData.swift in Sources */,
 				BECF9A7524FAA64C0040EE8F /* RDMockHelper.swift in Sources */,
+				BE825E7425373AF300BEA5F8 /* ReddMockManager.swift in Sources */,
 				BECF9A7024FAA64C0040EE8F /* MockHTTPProtocol.swift in Sources */,
 				BECF9A7124FAA64C0040EE8F /* ConditionsCheck.swift in Sources */,
 				BECF9A6824FAA61B0040EE8F /* Data+InputStream.swift in Sources */,
