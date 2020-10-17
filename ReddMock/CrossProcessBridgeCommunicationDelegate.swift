@@ -15,9 +15,9 @@ protocol CrossProcessBridgeCommunicationDelegate {
     func removeObserver(notificationName: String)
 }
 
-final class CrossProcessBridgeCommunication: CrossProcessBridgeCommunicationDelegate {
+public final class CrossProcessBridgeCommunication: CrossProcessBridgeCommunicationDelegate {
     
-    static let shared = CrossProcessBridgeCommunication()
+    public static let shared = CrossProcessBridgeCommunication()
     var dwNotificationCenter = CFNotificationCenterGetDarwinNotifyCenter()
     var mockHandler: (() -> Void)?
     
@@ -42,7 +42,7 @@ final class CrossProcessBridgeCommunication: CrossProcessBridgeCommunicationDele
                                         .deliverImmediately)
     }
     
-    func postDWNotification(notificationName: String) {
+    public func postDWNotification(notificationName: String) {
         CFNotificationCenterPostNotification(dwNotificationCenter,
                                              CFNotificationName(notificationName as CFString),
                                              nil,
