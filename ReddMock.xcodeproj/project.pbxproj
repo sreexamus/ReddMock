@@ -76,6 +76,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE43674425426D83002EA425 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				BE825E7725373B4A00BEA5F8 /* CrossProcessBridgeCommunicationDelegate.swift */,
+				BECF9A6A24FAA64C0040EE8F /* ConditionsCheck.swift */,
+				BECF9A6924FAA64C0040EE8F /* MockHTTPProtocol.swift */,
+				BECF9A6B24FAA64C0040EE8F /* MockRequestData.swift */,
+				BECF9A6F24FAA64C0040EE8F /* MockScenarioData.swift */,
+				BECF9A6E24FAA64C0040EE8F /* RDMockHelper.swift */,
+				BECF9A6C24FAA64C0040EE8F /* RDMockResponse.swift */,
+				BECF9A6D24FAA64C0040EE8F /* RDMockUtil.swift */,
+				BE825E7325373AF300BEA5F8 /* ReddMockManager.swift */,
+				BECF9A6424FAA61B0040EE8F /* Extensions */,
+				BECF9A6124FAA61B0040EE8F /* Swizzling */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		BECF9A3D24FAA5E50040EE8F = {
 			isa = PBXGroup;
 			children = (
@@ -97,19 +115,9 @@
 		BECF9A4924FAA5E50040EE8F /* ReddMock */ = {
 			isa = PBXGroup;
 			children = (
-				BE825E7725373B4A00BEA5F8 /* CrossProcessBridgeCommunicationDelegate.swift */,
-				BECF9A6A24FAA64C0040EE8F /* ConditionsCheck.swift */,
-				BECF9A6924FAA64C0040EE8F /* MockHTTPProtocol.swift */,
-				BECF9A6B24FAA64C0040EE8F /* MockRequestData.swift */,
-				BECF9A6F24FAA64C0040EE8F /* MockScenarioData.swift */,
-				BECF9A6E24FAA64C0040EE8F /* RDMockHelper.swift */,
-				BECF9A6C24FAA64C0040EE8F /* RDMockResponse.swift */,
-				BECF9A6D24FAA64C0040EE8F /* RDMockUtil.swift */,
-				BECF9A6424FAA61B0040EE8F /* Extensions */,
-				BECF9A6124FAA61B0040EE8F /* Swizzling */,
+				BE43674425426D83002EA425 /* src */,
 				BECF9A4A24FAA5E50040EE8F /* ReddMock.h */,
 				BECF9A4B24FAA5E50040EE8F /* Info.plist */,
-				BE825E7325373AF300BEA5F8 /* ReddMockManager.swift */,
 			);
 			path = ReddMock;
 			sourceTree = "<group>";

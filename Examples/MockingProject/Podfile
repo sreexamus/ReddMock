@@ -1,0 +1,23 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+source 'https://github.com/sreexamus/PrivatePodsSpec.git'
+source 'https://github.com/CocoaPods/Specs.git'
+target 'MockingProject' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  pod 'ReddMock'
+  # Pods for MockingProject
+
+  target 'MockingProjectTests' do
+    inherit! :search_paths
+    pod 'ReddMock'
+    # Pods for testing
+  end
+
+  target 'MockingProjectUITests' do
+    # Pods for testing
+   pod 'ReddMock'
+  end
+
+end

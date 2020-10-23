@@ -1,0 +1,11 @@
+framework module ReddMock {
+  umbrella header "ReddMock.h"
+
+  export *
+  module * { export * }
+}
+
+module ReddMock.Swift {
+    header "ReddMock-Swift.h"
+    requires objc
+}

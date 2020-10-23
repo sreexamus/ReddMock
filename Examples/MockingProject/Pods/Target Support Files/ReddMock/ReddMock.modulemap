@@ -1,0 +1,6 @@
+framework module ReddMock {
+  umbrella header "ReddMock-umbrella.h"
+
+  export *
+  module * { export * }
+}

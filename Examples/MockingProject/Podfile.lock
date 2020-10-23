@@ -1,0 +1,16 @@
+PODS:
+  - ReddMock (0.0.1)
+
+DEPENDENCIES:
+  - ReddMock
+
+SPEC REPOS:
+  https://github.com/sreexamus/PrivatePodsSpec.git:
+    - ReddMock
+
+SPEC CHECKSUMS:
+  ReddMock: 365b46b05c246b02aef4fc81d5fc03b4475eaafe
+
+PODFILE CHECKSUM: 42f27bc57da92335e2dfacfa55d3cbfec563f5a5
+
+COCOAPODS: 1.9.1
