@@ -14,9 +14,7 @@ class MockHTTPProtocol: URLProtocol {
         guard let url = request.url else { return false }
         let urlPath = url.path
         print("#### urlPath ..... \(urlPath)")
-        let isRequestHandle = RDMockHelper.shared.mockScenarios.contains { scenario -> Bool in
-            scenario.requestData.url.absoluteString.contains(urlPath)
-        }
+        let isRequestHandle = RDMockHelper.shared.mockScenarios.contains { $0.requestData.url.path == urlPath }
         print("#### isRequestHandle ..... \(isRequestHandle)")
         return isRequestHandle
     }
@@ -59,7 +57,7 @@ extension MockHTTPProtocol {
             var isCondititon = true
             if scenario.conditionsCheck.contains(.host) {
                 let host = request.url?.host
-                let isTrue = host == scenario.requestData.host
+                let isTrue = host == scenario.requestData.url.host
                 isCondititon = isCondititon && isTrue
                 print("Testing Host .. \(isCondititon)")
             }
@@ -115,7 +113,7 @@ extension MockHTTPProtocol {
     }
     
     func handleNoMatchFound() {
-        let httpResponse = HTTPURLResponse(url: request.url!, statusCode: 500, httpVersion: nil, headerFields: nil)
+        let httpResponse = HTTPURLResponse(url: request.url!, statusCode: 404, httpVersion: nil, headerFields: nil)
         self.client?.urlProtocol(self, didReceive: httpResponse!, cacheStoragePolicy: .notAllowed)
         client?.urlProtocol(self, didLoad: Data())
         client?.urlProtocolDidFinishLoading(self)

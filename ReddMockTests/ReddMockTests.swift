@@ -19,7 +19,7 @@ class ReddMockTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testUrlPath() throws {
+    func testUrlHost() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         guard let url = URL(string: "https://google.com/234/samplecode") else { return }
@@ -32,10 +32,49 @@ class ReddMockTests: XCTestCase {
         
         let responseExpectation = self.expectation(description: "Google response received")
         URLSession.shared.dataTask(with: url) { (data, response, error) in
+            let responseUrl = response as? HTTPURLResponse
+            XCTAssertEqual(responseUrl?.statusCode, 200, "Call failed")
             responseExpectation.fulfill()
-                let responseUrl = response as? HTTPURLResponse
-                print("stat code \(responseUrl?.statusCode)")
-                XCTAssertEqual(responseUrl?.statusCode, 0, "Call failed")
+        }.resume()
+        self.wait(for: [responseExpectation], timeout: 5)
+    }
+    
+    func testUrlPath() throws {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        guard let url = URL(string: "https://google.com/234/samplecode") else { return }
+        RDMockHelper.addMockScenario(MockScenarioData.init(requestData: MockRequestData.init(url: url,
+                                                                                             params: nil,
+                                                                                             headers: nil),
+                                                           mockFile: "GoogleMock",
+                                                           response: nil,
+                                                           conditionsCheck: .path))
+        
+        let responseExpectation = self.expectation(description: "Google response received")
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            let responseUrl = response as? HTTPURLResponse
+            XCTAssertEqual(responseUrl?.statusCode, 200, "Call failed")
+            responseExpectation.fulfill()
+        }.resume()
+        self.wait(for: [responseExpectation], timeout: 5)
+    }
+    
+    func testUrlPathFailure() throws {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        guard let url = URL(string: "https://google.com/234/samplecode") else { return }
+        RDMockHelper.addMockScenario(MockScenarioData.init(requestData: MockRequestData.init(url: url,
+                                                                                             params: nil,
+                                                                                             headers: nil),
+                                                           mockFile: "GoogleMock",
+                                                           response: nil,
+                                                           conditionsCheck: .path))
+        
+        let responseExpectation = self.expectation(description: "Google response received")
+        URLSession.shared.dataTask(with: URL(string: "https://google.com/samplecode")!) { (data, response, error) in
+            let responseUrl = response as? HTTPURLResponse
+            XCTAssertEqual(responseUrl?.statusCode, 404, "Call failed")
+            responseExpectation.fulfill()
         }.resume()
         self.wait(for: [responseExpectation], timeout: 5)
     }
@@ -56,9 +95,10 @@ class ReddMockTests: XCTestCase {
         request.httpMethod = "POST"
         request.httpBody = httpBody
         URLSession.shared.dataTask(with: request) { (url, response, error) in
-            responseExpectation.fulfill()
+            
             let responseUrl = response as? HTTPURLResponse
-                       XCTAssertEqual(responseUrl?.statusCode, 200, "Call failed")
+            XCTAssertEqual(responseUrl?.statusCode, 200, "Call failed")
+            responseExpectation.fulfill()
         }.resume()
         self.wait(for: [responseExpectation], timeout: 5)
     }
@@ -73,7 +113,7 @@ class ReddMockTests: XCTestCase {
                                                            mockFile: "GoogleMock",
                                                            response: nil,
                                                            conditionsCheck: [.httpBody, .headers]))
-       
+        
         let responseExpectation = self.expectation(description: "Google response received")
         var request = URLRequest(url: url)
         let httpBody = try? JSONSerialization.data(withJSONObject: bodyParams, options: [JSONSerialization.WritingOptions()])
@@ -81,9 +121,34 @@ class ReddMockTests: XCTestCase {
         request.httpBody = httpBody
         request.allHTTPHeaderFields?["userAgent"] = "iPhone iOS 12.0"
         URLSession.shared.dataTask(with: request) { (url, response, error) in
-            responseExpectation.fulfill()
             let responseUrl = response as? HTTPURLResponse
-                       XCTAssertEqual(responseUrl?.statusCode, 200, "Call failed")
+            XCTAssertEqual(responseUrl?.statusCode, 200, "Call failed")
+            responseExpectation.fulfill()
+        }.resume()
+        self.wait(for: [responseExpectation], timeout: 5)
+    }
+    
+    func testHeaderAndBodyFailure() throws {
+        let bodyParams = ["name": "google"]
+        let headers = ["userAgent": "iPhone iOS 12.0"]
+        guard let url = URL(string: "https://google.com/234/samplecode") else { return }
+        RDMockHelper.addMockScenario(MockScenarioData.init(requestData: MockRequestData.init(url: url,
+                                                                                             params: bodyParams,
+                                                                                             headers: headers),
+                                                           mockFile: "GoogleMock",
+                                                           response: nil,
+                                                           conditionsCheck: [.httpBody, .headers]))
+        
+        let responseExpectation = self.expectation(description: "Google response received")
+        var request = URLRequest(url: url)
+        let httpBody = try? JSONSerialization.data(withJSONObject: ["name": "facebook"], options: [JSONSerialization.WritingOptions()])
+        request.httpMethod = "POST"
+        request.httpBody = httpBody
+        request.allHTTPHeaderFields?["userAgent"] = "iPhone iOS 12.0"
+        URLSession.shared.dataTask(with: request) { (url, response, error) in
+            let responseUrl = response as? HTTPURLResponse
+            XCTAssertEqual(responseUrl?.statusCode, 404, "Call failed")
+            responseExpectation.fulfill()
         }.resume()
         self.wait(for: [responseExpectation], timeout: 5)
     }
@@ -102,9 +167,9 @@ class ReddMockTests: XCTestCase {
         request.httpMethod = "GET"
         request.allHTTPHeaderFields?["userAgent"] = "iPhone iOS 12.0"
         URLSession.shared.dataTask(with: request) { (url, response, error) in
-            responseExpectation.fulfill()
             let responseUrl = response as? HTTPURLResponse
-                       XCTAssertEqual(responseUrl?.statusCode, 200, "Call failed")
+            XCTAssertEqual(responseUrl?.statusCode, 200, "Call failed")
+            responseExpectation.fulfill()
         }.resume()
         self.wait(for: [responseExpectation], timeout: 5)
     }

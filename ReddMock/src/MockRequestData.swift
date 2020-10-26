@@ -14,13 +14,11 @@ public struct MockRequestData: Equatable {
     public let params: [String: Any]?
     public let headers: [String: String]?
     public let httpBody: Data?
-    public let host: String?
     
-    public init(url: URL, params: [String: Any]? = nil, headers: [String: String]? = nil, host: String? = nil) {
+    public init(url: URL, params: [String: Any]? = nil, headers: [String: String]? = nil) {
         self.url = url
         self.params = params
         self.headers = headers
-        self.host = host
         if let params = params {
             print("params converted to http body")
             self.httpBody = try? JSONSerialization.data(withJSONObject: params as Any, options: [JSONSerialization.WritingOptions()])
